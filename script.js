@@ -2,10 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Smooth scroll
     document.querySelectorAll('a').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
+            // Only prevent default if the link does not have target="_blank"
+            if (!this.target || this.target !== '_blank') {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
             }
         });
     });
